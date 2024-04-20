@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- checkbox_checked_blue.xml -->
+    <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+        <solid android:color="@color/blue"/> <!-- Ganti dengan warna biru yang Anda inginkan -->
+    </shape>
+
+    <!-- checkbox_unchecked_blue.xml -->
+    <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+        <stroke android:width="2dp" android:color="@color/blue"/> <!-- Ganti dengan warna biru yang Anda inginkan -->
+    </shape>
+
+</selector>
