@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rv_lostfound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/ivLostFoundItem"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="Deskripsi Gambar"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <CheckBox
+            android:id="@+id/cbItemLostFoundIsFinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="236dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="8dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivLostFoundItem"
+            app:layout_constraintStart_toEndOf="@+id/ivLostFoundItem"
+            app:layout_constraintTop_toTopOf="@id/ivLostFoundItem"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tvItemLostFoundTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@id/ivLostFoundItem"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/ivItemLostFoundDetail"
+            app:layout_constraintStart_toEndOf="@+id/ivLostFoundItem"
+            app:layout_constraintTop_toTopOf="@+id/ivLostFoundItem"
+            tools:text="Nama Destinasi" />
+
+        <ImageView
+            android:id="@+id/ivItemLostFoundDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tvItemLostFoundTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvItemLostFoundTitle" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="4"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLostFoundItem"
+            app:layout_constraintEnd_toEndOf="@+id/tvItemLostFoundTitle"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvItemLostFoundTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemLostFoundTitle"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Deskripsi Destinasi" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

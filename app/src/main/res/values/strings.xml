@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lost &amp; Founds</string>
+
+
+    <string-array name="status">
+        <item>lost</item>
+        <item>found</item>
+    </string-array>
+</resources>
