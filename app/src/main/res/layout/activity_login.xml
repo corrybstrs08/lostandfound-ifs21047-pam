@@ -108,6 +108,8 @@
             android:layout_marginEnd="24dp"
             android:padding="15dp"
             android:text="Login"
+            android:backgroundTint="@color/blue"
+
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

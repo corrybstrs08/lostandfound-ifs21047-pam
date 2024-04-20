@@ -17,6 +17,7 @@
         tools:visibility="visible">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/appbarMain"
+            android:backgroundTint="@color/blue"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#0188A4"
@@ -58,6 +59,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:backgroundTint="#0188A4"
+        android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_24"

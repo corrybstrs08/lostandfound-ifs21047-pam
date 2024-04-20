@@ -18,6 +18,7 @@
             android:id="@+id/appbarLostFoundManage"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="@color/blue"
             android:background="#0188A4"
             app:navigationIcon="@drawable/ic_arrow_back_24"
             app:navigationIconTint="@color/white"
@@ -122,6 +123,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Simpan"
+                android:backgroundTint="@color/blue"
+
                 android:textSize="14sp"
                 app:cornerRadius="2pt"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -145,6 +148,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Pilih Gambar"
+                android:backgroundTint="@color/blue"
+
                 app:cornerRadius="2pt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
