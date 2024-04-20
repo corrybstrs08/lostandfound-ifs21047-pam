@@ -216,29 +216,34 @@ class LostFoundDetailActivity : AppCompatActivity() {
     }
 
     private fun observeDelete(todoId: Int) {
+        // Menampilkan loading spinner dan menyembunyikan komponen lainnya
         showComponent(false)
         showLoading(true)
-        viewModel.delete(todoId).observeOnce {
-            when (it) {
+
+        // Mengamati proses penghapusan
+        viewModel.delete(todoId).observeOnce { result ->
+            when (result) {
                 is MyResult.Error -> {
+                    // Jika terjadi kesalahan, tampilkan pesan kesalahan dan kembalikan ke tampilan sebelumnya
                     showComponent(true)
                     showLoading(false)
                     Toast.makeText(
                         this@LostFoundDetailActivity,
-                        "Gagal menghapus item: ${it.error}",
+                        "Gagal menghapus item: ${result.error}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
 
                 is MyResult.Success -> {
+                    // Jika penghapusan berhasil, tampilkan pesan sukses dan kembalikan ke tampilan sebelumnya
                     showLoading(false)
-
                     Toast.makeText(
                         this@LostFoundDetailActivity,
                         "Berhasil menghapus item",
                         Toast.LENGTH_SHORT
                     ).show()
 
+                    // Setelah menghapus item, kirimkan status perubahan dan selesaikan activity
                     val resultIntent = Intent()
                     resultIntent.putExtra(KEY_IS_CHANGED, true)
                     setResult(RESULT_CODE, resultIntent)

@@ -26,24 +26,25 @@
             android:contentDescription="Deskripsi Gambar"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cbItemLostFoundIsFinished"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintVertical_bias="0.444"
+            android:src="@drawable/picture" />
 
         <CheckBox
             android:id="@+id/cbItemLostFoundIsFinished"
-            android:layout_width="45dp"
-            android:layout_height="26dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
             android:scaleX="1"
             android:scaleY="1"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/ivLostFoundItem"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvStatus"
-            app:layout_constraintTop_toBottomOf="@+id/ivItemLostFoundDetail"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
 
         <TextView
             android:id="@+id/tvItemLostFoundTitle"
@@ -65,12 +66,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/ic_open_in_new"
-            app:layout_constraintBottom_toBottomOf="@+id/tvItemLostFoundTitle"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStatus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvItemLostFoundTitle"
-            app:layout_constraintVertical_bias="0.555"
+            app:layout_constraintVertical_bias="0.318"
             app:tint="@color/black" />
 
         <TextView

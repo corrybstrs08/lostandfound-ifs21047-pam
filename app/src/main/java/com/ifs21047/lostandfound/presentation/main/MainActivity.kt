@@ -133,15 +133,16 @@ class MainActivity : AppCompatActivity() {
             // Handle null case appropriately, misalnya menampilkan pesan error atau melakukan tindakan lainnya
             Log.e("MainActivity", "response == null")
             return
-        } else if (response.data == null){
+        } else if (response.data == null) {
             Log.e("MainActivity", "response.data == null")
             return
-        } else if (response.data.todos == null){
+        } else if (response.data.todos == null) {
             Log.e("MainActivity", "response.data.todos == null")
             return
         }
 
         // Lanjutkan dengan pemrosesan data
+        // Dalam metode loadAllToLayout()
         val todos = response.data.todos
         val layoutManager = LinearLayoutManager(this)
         binding.rvMainTodos.layoutManager = layoutManager
@@ -239,7 +240,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
+        private fun showLoading(isLoading: Boolean) {
         binding.pbMain.visibility =
             if (isLoading) View.VISIBLE else View.GONE
     }
