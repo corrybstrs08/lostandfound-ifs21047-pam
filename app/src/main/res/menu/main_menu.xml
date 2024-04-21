@@ -8,6 +8,11 @@
             app:showAsAction="never" />
 
         <item
+            android:id="@+id/mainMenuSave"
+            android:title="Save LostAndFounds"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/mainMenuLogout"
             android:title="Logout"
             app:showAsAction="never" />

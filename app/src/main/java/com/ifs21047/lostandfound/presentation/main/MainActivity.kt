@@ -23,6 +23,7 @@ import com.ifs21047.lostfounds.presentation.ViewModelFactory
 import com.ifs21047.lostandfound.presentation.login.LoginActivity
 import com.ifs21047.lostandfound.presentation.lostfound.LostFoundDetailActivity
 import com.ifs21047.lostandfound.presentation.lostfound.LostFoundManageActivity
+import com.ifs21047.lostandfound.presentation.lostfound.LostFoundSaveActivity
 import com.ifs21047.lostfounds.presentation.main.MainViewModel
 import com.ifs21047.lostandfound.presentation.profile.ProfileActivity
 
@@ -79,6 +80,11 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.mainMenuProfile -> {
                     openProfileActivity()
+                    true
+                }
+
+                R.id.mainMenuSave -> {
+                    openSaveLostFoundActivity()
                     true
                 }
 
@@ -277,6 +283,14 @@ class MainActivity : AppCompatActivity() {
             LostFoundManageActivity::class.java
         )
         intent.putExtra(LostFoundManageActivity.KEY_IS_ADD, true)
+        launcher.launch(intent)
+    }
+
+    private fun openSaveLostFoundActivity() {
+        val intent = Intent(
+            this@MainActivity,
+            LostFoundSaveActivity::class.java
+        )
         launcher.launch(intent)
     }
 }

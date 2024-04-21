@@ -1,6 +1,7 @@
 package com.ifs21047.lostfounds.di
 
 import android.content.Context
+import com.ifs21047.lostandfound.data.repository.LocalLostFoundRepository
 import com.ifs21047.lostfounds.data.pref.UserPreference
 import com.ifs21047.lostfounds.data.pref.dataStore
 import com.ifs21047.lostfounds.data.remote.retrofit.ApiConfig
@@ -33,5 +34,10 @@ object Injection {
         val apiService: IApiService = ApiConfig.getApiService(user.token)
         return LostFoundRepository.getInstance(apiService)
     }
+
+    fun provideLocalLostFoundRepository(context: Context): LocalLostFoundRepository {
+        return LocalLostFoundRepository.getInstance(context)
+    }
+
 
 }

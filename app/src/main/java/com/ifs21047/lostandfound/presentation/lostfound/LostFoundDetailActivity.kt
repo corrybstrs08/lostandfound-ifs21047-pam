@@ -13,6 +13,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ifs21047.delcomtodo.data.remote.response.LostFoundResponse
+import com.ifs21047.lostandfound.R
+import com.ifs21047.lostandfound.data.local.entity.LostFoundEntity
 import com.ifs21047.lostandfound.databinding.ActivityLostfoundDetailBinding
 import com.ifs21047.lostfounds.data.model.LostFound
 import com.ifs21047.lostfounds.data.remote.MyResult
@@ -26,6 +28,8 @@ class LostFoundDetailActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
     private var isChanged: Boolean = false
+    private var isSave: Boolean = false
+    private var LostFound: LostFoundEntity? = null
 
     private val launcher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -100,6 +104,15 @@ class LostFoundDetailActivity : AppCompatActivity() {
                 tvLostFoundDetailDate.text = "Diposting pada: ${todo.createdAt}"
                 tvLostFoundDetailDesc.text = todo.description
 
+                viewModel.getLocalLostFound(todo.id).observeOnce {
+                    if(it != null){
+                        LostFound = it
+                        setSave(true)
+                    }else{
+                        setSave(false)
+                    }
+                }
+
                 cbLostFoundDetailIsFinished.isChecked = todo.isCompleted == 1
 
                 val statusText = if (todo.status.equals("found", ignoreCase = true)) {
@@ -162,6 +175,40 @@ class LostFoundDetailActivity : AppCompatActivity() {
                     }
                 }
 
+                ivLostFoundDetailActionSave.setOnClickListener {
+                    if(isSave){
+                        setSave(false)
+                        if(LostFound != null){
+                            viewModel.deleteLocalLostFound(LostFound!!)
+                        }
+                        Toast.makeText(
+                            this@LostFoundDetailActivity,
+                            "LostFound berhasil dihapus dari daftar favorite",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }else{
+                        LostFound = LostFoundEntity(
+                            id = todo.id,
+                            title = todo.title,
+                            description = todo.description,
+                            isCompleted = todo.isCompleted,
+                            cover = todo.cover,
+                            createdAt = todo.createdAt,
+                            updatedAt = todo.updatedAt,
+                            status = "", // Anda perlu memberikan nilai default untuk status
+                            userId = 0 // Anda perlu memberikan nilai default untuk userId
+                        )
+
+                        setSave(true)
+                        viewModel.insertLocalLostFound(LostFound!!)
+                        Toast.makeText(
+                            this@LostFoundDetailActivity,
+                            "LostFound berhasil ditambahkan ke daftar favorite",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
                 ivLostFoundDetailActionDelete.setOnClickListener {
                     val builder = AlertDialog.Builder(this@LostFoundDetailActivity)
 
@@ -206,6 +253,17 @@ class LostFoundDetailActivity : AppCompatActivity() {
                 "Tidak ditemukan item yang dicari",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+    }
+
+    private fun setSave(status: Boolean){
+        isSave = status
+        if(status){
+            binding.ivLostFoundDetailActionSave
+                .setImageResource(R.drawable.save)
+        }else{
+            binding.ivLostFoundDetailActionSave
+                .setImageResource(R.drawable.savety)
         }
     }
 
