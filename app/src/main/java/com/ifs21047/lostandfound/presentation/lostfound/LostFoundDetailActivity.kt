@@ -1,5 +1,6 @@
 package com.ifs21047.lostandfound.presentation.lostfound
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.ifs21047.delcomtodo.data.remote.response.LostFoundResponse
 import com.ifs21047.lostandfound.R
 import com.ifs21047.lostandfound.data.local.entity.LostFoundEntity
@@ -43,7 +45,6 @@ class LostFoundDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLostfoundDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupView()
         setupAction()
     }
@@ -91,10 +92,12 @@ class LostFoundDetailActivity : AppCompatActivity() {
                     showLoading(false)
                     finishAfterTransition()
                 }
+                else -> {}
             }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadTodo(todo: LostFoundResponse?) {
         if (todo != null) {
             showComponent(true)
@@ -113,6 +116,26 @@ class LostFoundDetailActivity : AppCompatActivity() {
                     }
                 }
 
+                if(todo.cover != null){
+                    imageView2.visibility = View.VISIBLE
+
+                    Glide.with(this@LostFoundDetailActivity)
+                        .load(todo.cover)
+                        .placeholder(R.drawable.ic_image_24)
+                        .into(imageView2)
+                }else{
+                    imageView2.visibility = View.GONE
+                }
+
+                viewModel.getLocalLostFound(todo.id).observeOnce {
+                    if(it != null){
+                        LostFound = it
+                        setSave(true)
+                    }else{
+                        setSave(false)
+                    }
+                }
+
                 cbLostFoundDetailIsFinished.isChecked = todo.isCompleted == 1
 
                 val statusText = if (todo.status.equals("found", ignoreCase = true)) {
@@ -120,7 +143,7 @@ class LostFoundDetailActivity : AppCompatActivity() {
                     highlightText("Found", Color.GREEN)
                 } else {
                     // Jika status "lost", maka gunakan warna kuning
-                    highlightText("Lost", Color.YELLOW)
+                    highlightText("Lost", Color.RED)
                 }
                 // Menetapkan teks status yang sudah disorot ke TextView
                 tvStatusDetail.text = statusText
@@ -138,13 +161,13 @@ class LostFoundDetailActivity : AppCompatActivity() {
                                 if (isChecked) {
                                     Toast.makeText(
                                         this@LostFoundDetailActivity,
-                                        "Gagal menyelesaikan todo: " + todo.title,
+                                        "Gagal menyelesaikan LostFound: " + todo.title,
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 } else {
                                     Toast.makeText(
                                         this@LostFoundDetailActivity,
-                                        "Gagal batal menyelesaikan todo: " + todo.title,
+                                        "Gagal batal menyelesaikan LostFound: " + todo.title,
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
@@ -183,7 +206,7 @@ class LostFoundDetailActivity : AppCompatActivity() {
                         }
                         Toast.makeText(
                             this@LostFoundDetailActivity,
-                            "LostFound berhasil dihapus dari daftar favorite",
+                            "LostFound berhasil dihapus dari daftar tersimpan",
                             Toast.LENGTH_SHORT
                         ).show()
                     }else{
@@ -212,7 +235,7 @@ class LostFoundDetailActivity : AppCompatActivity() {
                 ivLostFoundDetailActionDelete.setOnClickListener {
                     val builder = AlertDialog.Builder(this@LostFoundDetailActivity)
 
-                    builder.setTitle("Konfirmasi Hapus Item Lost & Found")
+                    builder.setTitle("Konfirmasi Hapus Lost & Found")
                         .setMessage("Anda yakin ingin menghapus Item ini?")
 
                     builder.setPositiveButton("Ya") { _, _ ->

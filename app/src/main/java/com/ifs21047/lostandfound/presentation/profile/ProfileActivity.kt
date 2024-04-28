@@ -40,6 +40,11 @@ class ProfileActivity : AppCompatActivity() {
             ivProfileBack.setOnClickListener {
                 finish()
             }
+
+            btnEditProfile.setOnClickListener {
+                // Navigate to EditProfileActivity
+                startActivity(Intent(this@ProfileActivity, EditProfileActivity::class.java))
+            }
         }
     }
 

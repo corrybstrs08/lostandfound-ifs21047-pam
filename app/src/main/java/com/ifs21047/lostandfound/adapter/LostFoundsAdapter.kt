@@ -67,8 +67,8 @@ class LostFoundsAdapter :
                     // Jika status "lost", maka gunakan warna kuning
                     highlightText("Lost", Color.YELLOW)
                 }
-                // Menetapkan teks status yang sudah disorot ke TextView
-                tvStatus.text = statusText
+                // Menetapkan teaks status yang sudah disorot ke TextView
+                tvLostFoundDetailStatus.text = statusText
             }
         }
 

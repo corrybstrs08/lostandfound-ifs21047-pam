@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".presentation.lostfound.LostFoundManageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,11 +18,12 @@
             android:id="@+id/appbarLostFoundManage"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:backgroundTint="@color/blue"
             android:background="#0188A4"
+            android:backgroundTint="@color/blue"
             app:navigationIcon="@drawable/ic_arrow_back_24"
             app:navigationIconTint="@color/white"
-            app:title="Tambah Todo"
+            android:text="Tambah Lost &amp; Found"
+            app:title="Tambah Lost &amp; Found"
             app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -95,7 +95,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etLostFoundManageDesc"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/ic_user" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -123,8 +123,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Simpan"
                 android:backgroundTint="@color/blue"
+                android:text="Simpan"
 
                 android:textSize="14sp"
                 app:cornerRadius="2pt"
@@ -144,16 +144,32 @@
                 app:layout_constraintTop_toTopOf="@+id/btnLostFoundManageSave" />
 
             <Button
-                android:id="@+id/btnLostFoundPicture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btnCamera"
+                android:layout_width="107dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="8dp"
-                android:text="Pilih Gambar"
                 android:backgroundTint="@color/blue"
+
+                android:text="Camera"
+                app:cornerRadius="2pt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.124"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivSelectedImage"
+                tools:ignore="DuplicateClickableBoundsCheck,MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnLostFoundPicture"
+                android:layout_width="112dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/blue"
+                android:text="Galeri"
 
                 app:cornerRadius="2pt"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.687"
+                app:layout_constraintStart_toEndOf="@+id/btnCamera"
                 app:layout_constraintTop_toBottomOf="@+id/ivSelectedImage" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
