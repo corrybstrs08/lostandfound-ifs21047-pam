@@ -88,6 +88,16 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.mainMenuMyLostFound -> {
+                    observeGetMine()
+                    true
+                }
+
+                R.id.mainMenuAllLostFound -> {
+                    observeGetAll()
+                    true
+                }
+
                 R.id.mainMenuLogout -> {
                     viewModel.logout()
                     openLoginActivity()
@@ -111,8 +121,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeGetAll() {
+    private fun observeGetMine() {
         viewModel.getTodos().observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is MyResult.Loading -> {
+                        showLoading(true)
+                    }
+
+                    is MyResult.Success -> {
+                        showLoading(false)
+                        loadAllToLayout(result.data)
+                    }
+
+                    is MyResult.Error -> {
+                        showLoading(false)
+                        showEmptyError(true)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeGetAll() {
+        viewModel.getAllTodos().observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is MyResult.Loading -> {
