@@ -22,7 +22,6 @@ class MainViewModel(
         return authRepository.getSession().asLiveData()
     }
 
-
     fun logout() {
         viewModelScope.launch {
             authRepository.logout()
