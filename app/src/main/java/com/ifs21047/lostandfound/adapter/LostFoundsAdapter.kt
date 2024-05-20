@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.ifs21047.delcomtodo.data.remote.response.LostFoundsItemResponse
 import com.ifs21047.lostandfound.databinding.ItemRowLostfoundBinding
 
@@ -69,6 +70,11 @@ class LostFoundsAdapter :
                 }
                 // Menetapkan teaks status yang sudah disorot ke TextView
                 tvLostFoundDetailStatus.text = statusText
+                data.cover?.let { coverUrl ->
+                    Glide.with(itemView)
+                        .load(coverUrl)
+                        .into(ivLostFoundItem)
+                }
             }
         }
 

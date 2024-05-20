@@ -85,6 +85,13 @@ class LostFoundManageActivity : AppCompatActivity() {
 
                 observePostLostFound(title, description, status)
             }
+            btnCamera.setOnClickListener {
+                startCamera()
+            }
+
+            btnLostFoundPicture.setOnClickListener {
+                startGallery()
+            }
         }
     }
 
@@ -96,11 +103,14 @@ class LostFoundManageActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Success -> {
-                    showLoading(false)
-
-                    val resultIntent = Intent()
-                    setResult(RESULT_CODE, resultIntent)
-                    finishAfterTransition()
+                    if (currentImageUri != null) {
+                        observeAddCoverLost(result.data.todoId)
+                    } else {
+                        showLoading(false)
+                        val resultIntent = Intent()
+                        setResult(RESULT_CODE, resultIntent)
+                        finishAfterTransition()
+                    }
                 }
 
                 is MyResult.Error -> {

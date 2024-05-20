@@ -10,6 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/ivLostFoundItem"
+            android:layout_width="54dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cbItemLostFoundIsFinished"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/lost"
+            tools:src="@tools:sample/avatars" />
+
         <CheckBox
             android:id="@+id/cbItemLostFoundIsFinished"
             android:layout_width="wrap_content"
@@ -25,28 +37,31 @@
 
         <TextView
             android:id="@+id/tvItemLostFoundTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="223dp"
+            android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="Nama Barang"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/tvLostFoundDetailStatus"
             app:layout_constraintEnd_toStartOf="@+id/ivItemLostFoundDetail"
-            app:layout_constraintStart_toEndOf="@+id/cbItemLostFoundIsFinished"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.355"
+            app:layout_constraintStart_toEndOf="@+id/ivLostFoundItem"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tvLostFoundDetailStatus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="223dp"
+            android:layout_height="22dp"
             android:layout_marginBottom="8dp"
             android:text="Status Barang"
             android:textColor="#AAAAAA"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvItemLostFoundTitle"
-            app:layout_constraintStart_toEndOf="@+id/cbItemLostFoundIsFinished" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/ivLostFoundItem" />
 
         <ImageView
             android:id="@+id/ivItemLostFoundDetail"

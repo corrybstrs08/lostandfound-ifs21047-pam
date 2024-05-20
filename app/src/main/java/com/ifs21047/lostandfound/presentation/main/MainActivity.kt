@@ -76,6 +76,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        binding.radioButtonLost.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                observeGetLost()
+            }
+        }
+
+        binding.radioButtonFound.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                observeGetFound()
+            }
+        }
+
+
         binding.appbarMain.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.mainMenuProfile -> {
@@ -117,6 +130,48 @@ class MainActivity : AppCompatActivity() {
                 openLoginActivity()
             } else {
                 // load-todos
+            }
+        }
+    }
+
+    private fun observeGetLost() {
+        viewModel.getLostTodos().observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is MyResult.Loading -> {
+                        showLoading(true)
+                    }
+
+                    is MyResult.Success -> {
+                        loadAllToLayout(result.data)
+                    }
+
+                    is MyResult.Error -> {
+                        showLoading(false)
+                        showEmptyError(true)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeGetFound() {
+        viewModel.getFoundTodos().observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is MyResult.Loading -> {
+                        showLoading(true)
+                    }
+
+                    is MyResult.Success -> {
+                        loadAllToLayout(result.data)
+                    }
+
+                    is MyResult.Error -> {
+                        showLoading(false)
+                        showEmptyError(true)
+                    }
+                }
             }
         }
     }
@@ -276,6 +331,11 @@ class MainActivity : AppCompatActivity() {
                 }
             )
         }
+    }
+
+    private fun showErrorMessage(errorMessage: String) {
+        // Tampilkan pesan kesalahan kepada pengguna, misalnya dengan menggunakan Toast atau Snackbar
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
         private fun showLoading(isLoading: Boolean) {
